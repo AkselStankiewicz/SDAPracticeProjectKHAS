@@ -20,7 +20,6 @@ public class CityWeatherDb {
 	public CityDataEntity removeFromDb(String cityName) {
 		return dataBase.remove(cityName);
 	}
-
 	// TODO: metody do pracy nad bazą danych, dodawanie itp...
 	
 }
