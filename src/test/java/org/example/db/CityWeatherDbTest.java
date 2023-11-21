@@ -1,5 +1,6 @@
 package org.example.db;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,15 +10,27 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 class CityWeatherDbTest {
-    CityWeatherDb cityWeatherDb;
+    private static CityWeatherDb cityWeatherDb;
+
     @BeforeEach
     void init(){
+        System.out.println("BeforeEach");
      cityWeatherDb = new CityWeatherDb();
+    }
+
+    @AfterEach
+    void afterAll() {
+        System.out.println("afterAll");
+      cityWeatherDb = null;
+    }
+
+    private CityDataEntity getEntity() {
+        return new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
     }
 
     @Test
     void shouldSaveToDb() {
-        CityDataEntity city = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity city = getEntity();
         String name = city.getName();
 
         boolean result = cityWeatherDb.save(name, city);
@@ -27,7 +40,7 @@ class CityWeatherDbTest {
 
     @Test
     void shouldNotSaveToDb() {
-        CityDataEntity city = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity city = getEntity();
         String name = null;
 
         boolean result = cityWeatherDb.save(name, city);
@@ -40,7 +53,7 @@ class CityWeatherDbTest {
     }
     @Test
     void shouldRemoveWithKeyArgument() {
-        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity value = getEntity();
         String key = value.getName();
 
         cityWeatherDb.save(key,value);
@@ -52,7 +65,7 @@ class CityWeatherDbTest {
 
     @Test
     void shouldNotRemoveWithKeyArgument() {
-        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity value = getEntity();
         String key = value.getName();
 
         cityWeatherDb.save(key,value);
@@ -64,7 +77,7 @@ class CityWeatherDbTest {
 
     @Test
     void shouldRemoveWithValueArgument() {
-        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity value = getEntity();
         String key = value.getName();
 
         cityWeatherDb.save(key,value);
@@ -74,7 +87,7 @@ class CityWeatherDbTest {
     }
     @Test
     void shouldNotRemoveWithValueArgument() {
-        CityDataEntity value1 = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        CityDataEntity value1 = getEntity();
         String key = value1.getName();
         CityDataEntity value2 = new CityDataEntity(0L,"Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
 

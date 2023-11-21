@@ -8,6 +8,13 @@ public class CityWeatherDb {
     private static final Map<String, CityDataEntity> dataBase = new HashMap<>();
 
 
+    CityDataEntity getById(int id) {
+        return dataBase.entrySet().stream()
+                .filter(entry -> entry.getValue().getId() == id)
+                .map(Map.Entry::getValue)
+                .toList().get(0);
+    }
+
     boolean save(String key, CityDataEntity city) {
         if (dataBase.containsKey(key) || key == null)
             return false;
