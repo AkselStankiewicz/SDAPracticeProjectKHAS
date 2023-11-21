@@ -1,7 +1,10 @@
 package org.example.api.open_weather;
 
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
+@ToString
 public class CityOwResponse {
 	private Wind wind;
 	private Main main;

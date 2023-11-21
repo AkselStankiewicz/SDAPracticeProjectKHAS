@@ -31,7 +31,7 @@ public class Main {
 				case "X" -> isRunning = false;
 				case "Y" -> {
 					final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(sc);
-					System.out.println("City name: " + weatherFromOpenWeather.getName());
+					System.out.println("City name: " + weatherFromOpenWeather);
 				}
 				default -> System.out.println("ERROR!!! INVALID INPUT");
 			}
