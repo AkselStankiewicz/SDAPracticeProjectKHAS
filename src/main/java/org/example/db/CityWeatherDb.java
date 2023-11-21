@@ -28,7 +28,7 @@ public class CityWeatherDb {
                 stream().
                 filter(entry -> city.equals(entry.getValue()))
                 .map(Map.Entry::getKey).toString();
-        if (key.isEmpty())
+        if (key.isEmpty() || !dataBase.containsKey(key))
             return false;
         dataBase.remove(key);
         return true;

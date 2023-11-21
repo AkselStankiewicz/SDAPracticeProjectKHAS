@@ -38,6 +38,50 @@ class CityWeatherDbTest {
         Assertions.assertFalse(result);
         Assertions.assertFalse(result2);
     }
+    @Test
+    void shouldRemoveWithKeyArgument() {
+        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        String key = value.getName();
 
+        cityWeatherDb.save(key,value);
 
+        boolean result = cityWeatherDb.remove(key);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void shouldNotRemoveWithKeyArgument() {
+        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        String key = value.getName();
+
+        cityWeatherDb.save(key,value);
+
+        boolean result = cityWeatherDb.remove(key + "1");
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void shouldRemoveWithValueArgument() {
+        CityDataEntity value = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        String key = value.getName();
+
+        cityWeatherDb.save(key,value);
+        boolean result = cityWeatherDb.remove(value);
+
+        Assertions.assertTrue(result);
+    }
+    @Test
+    void shouldNotRemoveWithValueArgument() {
+        CityDataEntity value1 = new CityDataEntity(0L,"Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+        String key = value1.getName();
+        CityDataEntity value2 = new CityDataEntity(0L,"Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
+
+        cityWeatherDb.save(key,value1);
+
+        boolean result = cityWeatherDb.remove(value2);
+
+        Assertions.assertFalse(result);
+    }
 }
