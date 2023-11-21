@@ -19,8 +19,11 @@ public class WeatherService {
 		
 		var httpClientService = new HttpClientService<CityOwResponse>();
 		final CityOwResponse response = httpClientService.getWeather(openWeatherUrl, CityOwResponse.class);
-		
+
 		return response;
+
 	}
+
+
 	
 }

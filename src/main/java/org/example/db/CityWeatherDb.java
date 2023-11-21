@@ -16,7 +16,7 @@ public class CityWeatherDb {
     }
 
     boolean remove(String key, CityDataEntity city) {
-        if (dataBase.containsKey(key) || dataBase.containsValue(city)) {
+        if (dataBase.containsKey(key) && dataBase.containsValue(city)) {
             dataBase.remove(key, city);
             return true;
         }
@@ -24,7 +24,7 @@ public class CityWeatherDb {
     }
 
     boolean remove(String key) {
-        if (dataBase.containsValue(key)) {
+        if (dataBase.containsKey(key)) {
             dataBase.remove(key);
             return true;
         }
@@ -32,26 +32,26 @@ public class CityWeatherDb {
     }
 
     boolean remove(CityDataEntity city) {
-        String key = dataBase.entrySet().
-                stream().
-                filter(entry -> city.equals(entry.getValue())).
-                map(Map.Entry::getKey).toString();
-        if (key.isEmpty() || key.equals(null))
+        String key = dataBase.entrySet()
+                .stream()
+                .filter(entry -> city.equals(entry.getValue()))
+                .map(Map.Entry::getKey).toString();
+        if (key.isEmpty())
             return false;
         dataBase.remove(key);
         return true;
 
     }
 
-	public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {
+    public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {
 
-		if (dataBase.containsKey(cityName)) {
-			return dataBase.put(cityName, entity);
-		}else {
-			System.out.println("Brak klucza w bazie.");
-			return entity;
-		}
-	}
-	// TODO: metody do pracy nad bazą danych, dodawanie itp...
+        if (dataBase.containsKey(cityName)) {
+            return dataBase.put(cityName, entity);
+        } else {
+            System.out.println("Brak klucza w bazie.");
+            return entity;
+        }
+    }
+    // TODO: metody do pracy nad bazą danych, dodawanie itp...
 
 }
