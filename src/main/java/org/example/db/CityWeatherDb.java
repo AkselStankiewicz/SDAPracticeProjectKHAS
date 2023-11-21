@@ -9,18 +9,10 @@ public class CityWeatherDb {
 
 
     boolean save(String key, CityDataEntity city) {
-        if (dataBase.containsKey(key))
+        if (dataBase.containsKey(key) || key == null)
             return false;
         dataBase.put(key, city);
         return true;
-    }
-
-    boolean remove(String key, CityDataEntity city) {
-        if (dataBase.containsKey(key) && dataBase.containsValue(city)) {
-            dataBase.remove(key, city);
-            return true;
-        }
-        return false;
     }
 
     boolean remove(String key) {
@@ -32,9 +24,9 @@ public class CityWeatherDb {
     }
 
     boolean remove(CityDataEntity city) {
-        String key = dataBase.entrySet()
-                .stream()
-                .filter(entry -> city.equals(entry.getValue()))
+        String key = dataBase.entrySet().
+                stream().
+                filter(entry -> city.equals(entry.getValue()))
                 .map(Map.Entry::getKey).toString();
         if (key.isEmpty())
             return false;
