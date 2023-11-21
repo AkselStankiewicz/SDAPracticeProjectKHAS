@@ -9,7 +9,7 @@ public class CityWeatherDb {
 
 
     boolean save(String key, CityDataEntity city) {
-        if (dataBase.containsKey(key))
+        if (dataBase.containsKey(key) || key == null)
             return false;
         dataBase.put(key, city);
         return true;
