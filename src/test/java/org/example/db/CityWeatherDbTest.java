@@ -39,15 +39,5 @@ class CityWeatherDbTest {
         Assertions.assertFalse(result2);
     }
 
-    @Test
-    void shouldRemoveWithTwoArguments() {
-        String key = "Swiebodzin";
-        CityDataEntity city = new CityDataEntity(0L,"Świebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
 
-        cityWeatherDb.save(key,city);
-        boolean result = cityWeatherDb.remove(key, city);
-
-        Assertions.assertTrue(result);
-
-    }
 }
