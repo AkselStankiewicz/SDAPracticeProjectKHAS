@@ -1,7 +1,12 @@
 package org.example.db;
 
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+import java.time.LocalDate;
+@EqualsAndHashCode
+@Getter
 public class WeatherDataEntity {
 	private Long id;
 	private Long cityId;
