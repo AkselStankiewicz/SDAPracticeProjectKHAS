@@ -7,15 +7,6 @@ public class CityWeatherDb {
 
     private static final Map<String, CityDataEntity> dataBase = new HashMap<>();
 
-    public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {
-
-        if (dataBase.containsKey(cityName)) {
-            return dataBase.put(cityName, entity);
-        }else {
-            System.out.println("Brak klucza w bazie.");
-            return entity;
-        }
-    }
 
     boolean remove(String key, CityDataEntity city) {
         if (dataBase.containsKey(key) || dataBase.containsValue(city)) {
@@ -44,5 +35,16 @@ public class CityWeatherDb {
         return true;
 
     }
+
+	public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {
+
+		if (dataBase.containsKey(cityName)) {
+			return dataBase.put(cityName, entity);
+		}else {
+			System.out.println("Brak klucza w bazie.");
+			return entity;
+		}
+	}
+	// TODO: metody do pracy nad bazą danych, dodawanie itp...
 
 }
