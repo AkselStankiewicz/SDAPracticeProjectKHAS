@@ -29,7 +29,7 @@ class CityWeatherDbTest {
     }
 
     @Test
-    void shouldSaveToDb() {
+    void shouldSaveToDbTest() {
         CityDataEntity city = getEntity();
         String name = city.getName();
 
@@ -39,7 +39,7 @@ class CityWeatherDbTest {
     }
 
     @Test
-    void shouldNotSaveToDb() {
+    void shouldNotSaveToDbTest() {
         CityDataEntity city = getEntity();
         String name = null;
 
@@ -52,7 +52,7 @@ class CityWeatherDbTest {
         Assertions.assertFalse(result2);
     }
     @Test
-    void shouldRemoveWithKeyArgument() {
+    void shouldRemoveWithKeyArgumentTest() {
         CityDataEntity value = getEntity();
         String key = value.getName();
 
@@ -64,7 +64,7 @@ class CityWeatherDbTest {
     }
 
     @Test
-    void shouldNotRemoveWithKeyArgument() {
+    void shouldNotRemoveWithKeyArgumentTest() {
         CityDataEntity value = getEntity();
         String key = value.getName();
 
@@ -76,7 +76,7 @@ class CityWeatherDbTest {
     }
 
     @Test
-    void shouldRemoveWithValueArgument() {
+    void shouldRemoveWithValueArgumentTest() {
         CityDataEntity value = getEntity();
         String key = value.getName();
 
@@ -86,15 +86,23 @@ class CityWeatherDbTest {
         Assertions.assertTrue(result);
     }
     @Test
-    void shouldNotRemoveWithValueArgument() {
+    void shouldNotRemoveWithValueArgumentTest() {
         CityDataEntity value1 = getEntity();
+        CityDataEntity value3 = null;
         String key = value1.getName();
         CityDataEntity value2 = new CityDataEntity(0L,"Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L,1024L));
 
         cityWeatherDb.save(key,value1);
 
-        boolean result = cityWeatherDb.remove(value2);
+        boolean result1 = cityWeatherDb.remove(value2);
+        boolean result2 = cityWeatherDb.remove(value3);
 
-        Assertions.assertFalse(result);
+        Assertions.assertFalse(result1);
+        Assertions.assertFalse(result2);
+    }
+
+    @Test
+    void shouldModifyEntryTest() {
+
     }
 }

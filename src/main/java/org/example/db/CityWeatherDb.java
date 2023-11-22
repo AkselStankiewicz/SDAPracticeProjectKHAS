@@ -24,14 +24,18 @@ public class CityWeatherDb {
     }
 
     boolean remove(String key) {
-        if (dataBase.containsKey(key)) {
+        if (key == null || !dataBase.containsKey(key)) {
+            return false;
+        } else {
             dataBase.remove(key);
             return true;
         }
-        return false;
     }
 
     boolean remove(CityDataEntity city) {
+        if (city == null) {
+            return false;
+        }
         String key = dataBase.entrySet().
                 stream().
                 filter(entry -> city.equals(entry.getValue()))
