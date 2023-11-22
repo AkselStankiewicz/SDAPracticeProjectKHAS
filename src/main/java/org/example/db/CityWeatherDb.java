@@ -2,10 +2,11 @@ package org.example.db;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CityWeatherDb {
 
-    private static final Map<String, CityDataEntity> dataBase = new HashMap<>();
+    private final Map<String, CityDataEntity> dataBase = new HashMap<>();
 
 
     CityDataEntity getById(int id) {
@@ -34,12 +35,13 @@ public class CityWeatherDb {
         String key = dataBase.entrySet().
                 stream().
                 filter(entry -> city.equals(entry.getValue()))
-                .map(Map.Entry::getKey).toString();
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse("");
         if (key.isEmpty() || !dataBase.containsKey(key))
             return false;
         dataBase.remove(key);
         return true;
-
     }
 
     public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {

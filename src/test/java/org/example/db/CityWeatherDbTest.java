@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 class CityWeatherDbTest {
-    private static CityWeatherDb cityWeatherDb;
+    private CityWeatherDb cityWeatherDb;
 
     @BeforeEach
     void init(){
