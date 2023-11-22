@@ -3,15 +3,13 @@ package org.example.services;
 import org.example.api.HttpClientService;
 import org.example.api.open_weather.CityOwResponse;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WeatherService {
 	
-	public CityOwResponse getWeatherFromOpenWeather(Scanner sc) {
-		System.out.println("podaj nazwę miasta");
-		String city=sc.nextLine().trim();
+	public CityOwResponse getWeatherFromOpenWeather(String sc) {
+		String city=sc.trim();
 		Pattern pattern = Pattern.compile(" ");
 		Matcher matcher = pattern.matcher(city);
 		city = matcher.replaceAll("%20");

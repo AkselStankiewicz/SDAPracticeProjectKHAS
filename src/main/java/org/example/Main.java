@@ -1,10 +1,12 @@
 package org.example;
 
 import org.example.api.open_weather.CityOwResponse;
+import org.example.api.weatherStack.CityWsResponse;
 import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
 import org.example.services.DataToFile;
 import org.example.services.WeatherService;
+import org.example.services.WeatherServiceWs;
 
 import java.util.Scanner;
 
@@ -35,10 +37,14 @@ public class Main {
             switch (userInput) {
                 case "X" -> isRunning = false;
                 case "Y" -> {
-                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(sc);
-                    data.saveToFile(weatherFromOpenWeather, "Weather in cities");
+                    System.out.println("provide city name");
+                    String input=sc.nextLine();
+                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(input);
+                    final CityWsResponse weatherFromWeatherStack = new WeatherServiceWs().getWeatherFromWeatherStack(input);
+                    //data.saveToFile(weatherFromOpenWeather, "Weather in cities");
 
                     System.out.println("City name: " + weatherFromOpenWeather);
+                    System.out.println("City name: " + weatherFromWeatherStack);
                 }
 
                 default -> System.out.println("ERROR!!! INVALID INPUT");
