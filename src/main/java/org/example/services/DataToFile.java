@@ -2,7 +2,6 @@ package org.example.services;
 
 import org.example.api.open_weather.CityOwResponse;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

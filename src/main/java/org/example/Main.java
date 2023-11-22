@@ -69,7 +69,7 @@ public class Main {
                 new WeatherDataEntity(
                         WeatherIdService.getNewId(),
                         city.getId(),
-                        response.getDateTime(),
+                        response.getDt(),
                         response.getMain().getTemp(),
                         response.getWind().getSpeed(),
                         response.getMain().getPressure()

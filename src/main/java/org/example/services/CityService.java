@@ -1,7 +1,6 @@
 package org.example.services;
 
 import org.example.api.obj.City;
-import org.example.db.CityDataEntity;
 
 import java.util.HashSet;
 import java.util.List;

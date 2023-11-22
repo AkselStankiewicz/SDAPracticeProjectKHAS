@@ -90,7 +90,7 @@ class CityWeatherDbTest {
         CityDataEntity value1 = getEntity();
         CityDataEntity value3 = null;
         String key = value1.getName();
-        CityDataEntity value2 = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
+        CityDataEntity value2 = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25F, 10F, 1024F));
 
         cityWeatherDb.save(key, value1);
 
@@ -105,14 +105,14 @@ class CityWeatherDbTest {
     void shouldModifyEntryTest() {
         CityDataEntity toModify = getEntity();
         String cityName = toModify.getName();
-        CityDataEntity modified = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
+        CityDataEntity modified = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25F, 10F, 1024F));
 
         cityWeatherDb.save(cityName, toModify);
         CityDataEntity oldEntity = cityWeatherDb.modifyEntry(cityName, modified);
         CityDataEntity valueAfterModification = cityWeatherDb.getById(0);
 
-        Assertions.assertNotEquals(valueAfterModification, toModify);
-        Assertions.assertEquals(oldEntity, toModify);
+        Assertions.assertFalse(valueAfterModification.equals(toModify));
+        Assertions.assertFalse(oldEntity.equals(toModify));
     }
 
     @Test
@@ -136,6 +136,6 @@ class CityWeatherDbTest {
     }
 
     private CityDataEntity getEntity() {
-        return new CityDataEntity(0L, "Warszawa", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
+        return new CityDataEntity(0L, "Warszawa", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25F, 10F, 1024F));
     }
 }

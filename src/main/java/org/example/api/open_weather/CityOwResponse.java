@@ -15,5 +15,5 @@ public class CityOwResponse {
 	private String name;
 	private Wind wind;
 	private Main main;
-	private LocalDateTime dateTime;
+	private LocalDateTime dt;
 }
