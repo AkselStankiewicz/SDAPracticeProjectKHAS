@@ -32,7 +32,7 @@ public class DataToFile {
         return true;
     }
 
-    public void saveToFile(CityOwResponse response,String inputPath) {
+    public void saveToFile(CityOwResponse response, String inputPath) {
         Path path = Paths.get(inputPath+".csv");
         StringBuilder sb = new StringBuilder();
         boolean isCreated = createFile(path);
