@@ -22,6 +22,9 @@ public class WeatherService {
 		final CityOwResponse response = httpClientService.getWeather(openWeatherUrl, CityOwResponse.class);
 
 		return response;
+
 	}
+
+
 	
 }

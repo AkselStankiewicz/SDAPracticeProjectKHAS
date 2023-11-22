@@ -31,6 +31,6 @@ public class CityOwResponse {
 	}
 	
 	public LocalDateTime getDt() {
-		return dt;
+		return dt.now();
 	}
 }
