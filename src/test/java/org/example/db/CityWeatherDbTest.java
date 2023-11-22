@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,7 +90,7 @@ class CityWeatherDbTest {
         CityDataEntity value1 = getEntity();
         CityDataEntity value3 = null;
         String key = value1.getName();
-        CityDataEntity value2 = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L, 1024L));
+        CityDataEntity value2 = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
 
         cityWeatherDb.save(key, value1);
 
@@ -104,7 +105,7 @@ class CityWeatherDbTest {
     void shouldModifyEntryTest() {
         CityDataEntity toModify = getEntity();
         String cityName = toModify.getName();
-        CityDataEntity modified = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L, 1024L));
+        CityDataEntity modified = new CityDataEntity(0L, "Swiebodzin", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
 
         cityWeatherDb.save(cityName, toModify);
         CityDataEntity oldEntity = cityWeatherDb.modifyEntry(cityName, modified);
@@ -135,6 +136,6 @@ class CityWeatherDbTest {
     }
 
     private CityDataEntity getEntity() {
-        return new CityDataEntity(0L, "Warszawa", new WeatherDataEntity(0L, 0L, LocalDate.now(), 25L, 10L, 1024L));
+        return new CityDataEntity(0L, "Warszawa", new WeatherDataEntity(0L, 0L, LocalDateTime.now(), 25L, 10L, 1024L));
     }
 }

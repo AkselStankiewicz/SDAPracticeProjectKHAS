@@ -1,6 +1,7 @@
 package org.example.db;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -8,22 +9,27 @@ public class CityWeatherDb {
 
     private final Map<String, CityDataEntity> dataBase = new HashMap<>();
 
-
-    CityDataEntity getById(int id) {
-        return dataBase.entrySet().stream()
+    public CityDataEntity getById(int id) {
+        List<CityDataEntity> tmpList = dataBase.entrySet().stream()
                 .filter(entry -> entry.getValue().getId() == id)
                 .map(Map.Entry::getValue)
-                .toList().get(0);
+                .toList();
+        if (tmpList.isEmpty()) {
+            System.out.println("No such city with provided ID in database.");
+            return new CityDataEntity();
+        } else {
+            return tmpList.get(0);
+        }
     }
 
-    boolean save(String key, CityDataEntity city) {
+    public boolean save(String key, CityDataEntity city) {
         if (dataBase.containsKey(key) || key == null)
             return false;
         dataBase.put(key, city);
         return true;
     }
 
-    boolean remove(String key) {
+    public boolean remove(String key) {
         if (key == null || !dataBase.containsKey(key)) {
             return false;
         } else {
@@ -32,7 +38,7 @@ public class CityWeatherDb {
         }
     }
 
-    boolean remove(CityDataEntity city) {
+    public boolean remove(CityDataEntity city) {
         if (city == null) {
             return false;
         }
@@ -55,13 +61,17 @@ public class CityWeatherDb {
             return new CityDataEntity();
         }
 
-        if (dataBase.containsKey(cityName)) {
-            return dataBase.put(cityName, entity);
-        } else {
+        if (!dataBase.containsKey(cityName)) {
             System.out.println("Brak klucza w bazie.");
             return new CityDataEntity();
+        } else {
+            save(cityName, entity);
+            return entity;
         }
     }
-    // TODO: metody do pracy nad bazą danych, dodawanie itp...
+
+    public Map<String, CityDataEntity> getAll() {
+        return new HashMap<>(dataBase);
+    }
 
 }
