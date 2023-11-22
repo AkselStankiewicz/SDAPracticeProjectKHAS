@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.api.open_weather.CityOwResponse;
+import org.example.db.CityDataEntity;
+import org.example.db.CityWeatherDb;
 import org.example.services.DataToFile;
 import org.example.services.WeatherService;
 
@@ -10,6 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
+        CityWeatherDb db = new CityWeatherDb();
+        DataToFile data = new DataToFile();
 
         var isRunning = true;
         var isFirstRun = true;
@@ -27,12 +31,13 @@ public class Main {
 
             Scanner sc = new Scanner(System.in);
             String userInput = sc.nextLine();
-            DataToFile data = new DataToFile();
+            CityDataEntity cityData = new CityDataEntity();
             switch (userInput) {
                 case "X" -> isRunning = false;
                 case "Y" -> {
                     final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(sc);
-                    data.saveToFile(weatherFromOpenWeather,"Weather in cities");
+                    data.saveToFile(weatherFromOpenWeather, "Weather in cities");
+
                     System.out.println("City name: " + weatherFromOpenWeather);
                 }
 

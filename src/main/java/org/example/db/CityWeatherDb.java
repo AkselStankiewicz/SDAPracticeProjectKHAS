@@ -16,7 +16,7 @@ public class CityWeatherDb {
                 .toList().get(0);
     }
 
-    boolean save(String key, CityDataEntity city) {
+   public boolean save(String key, CityDataEntity city) {
         if (dataBase.containsKey(key) || key == null)
             return false;
         dataBase.put(key, city);
@@ -62,6 +62,6 @@ public class CityWeatherDb {
             return new CityDataEntity();
         }
     }
-    // TODO: metody do pracy nad bazą danych, dodawanie itp...
+
 
 }
