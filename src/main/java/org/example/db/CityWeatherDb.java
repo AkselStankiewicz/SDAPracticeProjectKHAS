@@ -50,11 +50,16 @@ public class CityWeatherDb {
 
     public CityDataEntity modifyEntry(String cityName, CityDataEntity entity) {
 
+        if (cityName == null || entity == null) {
+            System.out.println("Klucz lub misasto jest równe null.");
+            return new CityDataEntity();
+        }
+
         if (dataBase.containsKey(cityName)) {
             return dataBase.put(cityName, entity);
         } else {
             System.out.println("Brak klucza w bazie.");
-            return entity;
+            return new CityDataEntity();
         }
     }
     // TODO: metody do pracy nad bazą danych, dodawanie itp...
