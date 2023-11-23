@@ -1,14 +1,12 @@
 package org.example.services;
 
-import org.example.api.WeatherApiParser;
 import org.example.api.open_weather.CityOwResponse;
 import org.example.api.open_weather.Main;
 import org.example.api.open_weather.Wind;
-import org.example.api.weatherStack.CityWsResponse;
 
 public class MedianFromInput {
 
-    CityOwResponse calculateAverageWeather(CityOwResponse owResponse,CityOwResponse owResponseToCompare) {
+    public CityOwResponse calculateAverageWeather(CityOwResponse owResponse,CityOwResponse owResponseToCompare) {
         Float windSpeed = owResponse.getWind().getSpeed();
         Float pressure = owResponse.getMain().getPressure();
         Float temp = owResponse.getMain().getTemp();
