@@ -7,6 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
- class Wind {
+ public class Wind {
 	private Float speed;
 }

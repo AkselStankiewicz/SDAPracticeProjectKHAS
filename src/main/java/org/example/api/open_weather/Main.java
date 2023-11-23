@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
- class Main {
-	Float temp;
-	Float pressure;
+ public class Main {
+	private Float temp;
+	private Float pressure;
 }
