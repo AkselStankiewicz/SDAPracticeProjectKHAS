@@ -23,13 +23,15 @@ public class Main {
         CityWeatherDb cityWeatherDb = new CityWeatherDb();
         while (isRunning) {
 
-            Scanner sc = new Scanner(System.in);
-            String userInput = sc.nextLine();
+            Scanner scan = new Scanner(System.in);
+            String userInput = scan.nextLine();
 
             switch (userInput) {
                 case "X" -> isRunning = false;
                 case "Y" -> {
-                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(sc);
+                    System.out.println("Podaj nazwę miasta: ");
+                    String city = scan.nextLine();
+                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(city);
                     System.out.println("City name: " + weatherFromOpenWeather);
                     addOrUpdateCity(weatherFromOpenWeather.getName(), weatherFromOpenWeather, cityService, cityWeatherDb);
                 }
