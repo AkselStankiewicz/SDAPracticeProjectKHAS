@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.api.Menu;
 import org.example.db.CityWeatherDb;
 import org.example.services.*;
 import org.example.services.cityServices.CityService;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        showWelcomeMenu();
+        Menu.showWelcomeMenu();
         CityService cityService = new CityService();
         CityWeatherDb cityWeatherDb = new CityWeatherDb();
         String userInput = "";
@@ -33,17 +34,5 @@ public class Main {
                 default -> System.out.println("ERROR!!! INVALID INPUT");
             }
         }
-    }
-
-    private static void showWelcomeMenu() {
-        System.out.println("""
-                ----------------------
-                WELCOME!
-                type X to quit
-                type Y to get a weather stats
-                type A to show all saved weathers
-                type AD to show all saved weathers with details
-                ----------------------
-                """);
     }
 }
