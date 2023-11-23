@@ -21,18 +21,20 @@ public class Main {
         showWelcomeMenu();
         CityService cityService = new CityService();
         CityWeatherDb cityWeatherDb = new CityWeatherDb();
-        while (isRunning) {
+        String userInput = "";
+        while (!userInput.equals("X")) {
 
             Scanner scan = new Scanner(System.in);
-            String userInput = scan.nextLine();
+            userInput = scan.nextLine();
 
             switch (userInput) {
                 case "X" -> isRunning = false;
                 case "Y" -> {
                     System.out.println("Podaj nazwę miasta: ");
                     String city = scan.nextLine();
-                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(city);
-                    System.out.println("City name: " + weatherFromOpenWeather);
+                    String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
+                    final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
+                    System.out.println("City weather: " + weatherFromOpenWeather);
                     addOrUpdateCity(weatherFromOpenWeather.getName(), weatherFromOpenWeather, cityService, cityWeatherDb);
                 }
                 case "A" -> cityService.showAllCities();
