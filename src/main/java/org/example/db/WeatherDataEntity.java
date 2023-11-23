@@ -22,7 +22,7 @@ public class WeatherDataEntity {
 	public String toString() {
 		return "ID: " + id +
 				"\nCity ID: " + cityId +
-				"\nDate: " + dateTime +
+				"\nDate: " + dateTime.getDayOfMonth() + "." + dateTime.getMonthValue() + "." + dateTime.getYear() +
 				"\nTemperature" + temperature +
 				"\nWind Speed: " + windSpeed +
 				"\nPressure: " + pressure;
