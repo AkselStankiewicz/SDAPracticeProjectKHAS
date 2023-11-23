@@ -41,7 +41,7 @@ public class Main {
                 case "AD" -> {
                     cityWeatherDb.getAll().forEach((k, v) -> {
                         System.out.println("Key: " + k);
-                        System.out.println("Value: " + v);
+                        System.out.println("Value: " + v + "\n");
                     });
                 }
                 default -> System.out.println("ERROR!!! INVALID INPUT");
@@ -79,9 +79,10 @@ public class Main {
                         response.getMain().getPressure()
                 ));
 
+        System.out.println("City to add weather ID: " + cityToAdd.getWeatherDataEntity().getId());
+
         if (cityService.isInBase(city.getName())) {
             db.modifyEntry(name, cityToAdd);
-            System.out.println("Updated the record.");
         } else {
             System.out.println("City added.");
             db.save(name, cityToAdd);
