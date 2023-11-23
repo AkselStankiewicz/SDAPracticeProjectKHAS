@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.api.Menu;
 import org.example.db.CityWeatherDb;
 import org.example.services.*;
 import org.example.services.cityServices.CityService;

@@ -1,19 +1,16 @@
 package org.example.services;
 
-import org.example.api.WeatherApiParser;
+import org.example.services.parsers.WeatherApiParser;
 import org.example.api.obj.City;
 import org.example.api.open_weather.CityOwResponse;
 import org.example.api.weatherStack.CityWsResponse;
 import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
-import org.example.db.WeatherDataEntity;
 import org.example.services.cityServices.CityService;
 import org.example.services.idServices.CityIdService;
-import org.example.services.idServices.WeatherIdService;
 import org.example.services.mappers.CityDataEntityMapper;
 import org.example.services.weatherServices.WeatherService;
 
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class GetAndAddToDbService {
@@ -25,11 +22,15 @@ public class GetAndAddToDbService {
         String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
         final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
         final CityWsResponse weatherFromWeatherStack= new WeatherService().getWeatherFromWeatherStack(parsed);
-        final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
-        final CityOwResponse averageWeatherFromTwoApis = new MedianFromInput().calculateAverageWeather(weatherFromOpenWeather, parsedWeather);
         System.out.println("City weather: " + weatherFromOpenWeather);
         System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
-        addOrUpdateCity(averageWeatherFromTwoApis.getName(), averageWeatherFromTwoApis, cityService, cityWeatherDb);
+        if (weatherFromWeatherStack.getCurrent() != null && weatherFromOpenWeather.getName() != null) {
+            final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
+            final CityOwResponse averageWeatherFromTwoApis = new MedianFromInput().calculateAverageWeather(weatherFromOpenWeather, parsedWeather);
+            addOrUpdateCity(averageWeatherFromTwoApis.getName(), averageWeatherFromTwoApis, cityService, cityWeatherDb);
+        } else {
+            System.out.println("One or both of requested objects are null");
+        }
     }
     public CityDataEntity addOrUpdateCity(String name, CityOwResponse response, CityService cityService, CityWeatherDb db) {
         City city;

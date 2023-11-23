@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example;
 
 public class Menu {
     public static void showWelcomeMenu() {

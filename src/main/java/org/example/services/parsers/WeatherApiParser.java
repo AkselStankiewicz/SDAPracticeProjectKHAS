@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example.services.parsers;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 public class WeatherApiParser {
 
     public CityOwResponse parseToOwResponse(CityWsResponse wsResponse) {
+        if (wsResponse == null) {
+            return new CityOwResponse();
+        }
         Wind wind = new Wind();
         Main main = new Main();
         main.setPressure(wsResponse.getCurrent().getPressure());
