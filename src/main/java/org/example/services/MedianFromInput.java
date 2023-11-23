@@ -9,7 +9,6 @@ import org.example.api.weatherStack.CityWsResponse;
 public class MedianFromInput {
 
     CityOwResponse calculateAverageWeather(CityOwResponse owResponse,CityOwResponse owResponseToCompare) {
-
         Float windSpeed = owResponse.getWind().getSpeed();
         Float pressure = owResponse.getMain().getPressure();
         Float temp = owResponse.getMain().getTemp();
