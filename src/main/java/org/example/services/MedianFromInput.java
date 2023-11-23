@@ -1,30 +1,28 @@
 package org.example.services;
 
-import org.example.api.WeatherApiParser;
 import org.example.api.open_weather.CityOwResponse;
-import org.example.api.weatherStack.CityWsResponse;
+import org.example.api.open_weather.Main;
+import org.example.api.open_weather.Wind;
 
 public class MedianFromInput {
 
+    public CityOwResponse calculateAverageWeather(CityOwResponse owResponse,CityOwResponse owResponseToCompare) {
+        Float windSpeed = owResponse.getWind().getSpeed();
+        Float pressure = owResponse.getMain().getPressure();
+        Float temp = owResponse.getMain().getTemp();
+        String name = owResponse.getName();
 
-    void display(CityWsResponse wsResponse, CityOwResponse owResponse) {
+        Float windSpeed2 = owResponseToCompare.getWind().getSpeed();
+        Float pressure2 = owResponseToCompare.getMain().getPressure();
+        Float temp2 = owResponseToCompare.getMain().getTemp();
 
-//        WeatherApiParser cityWsResponseWeatherApiParser = WeatherApiParser.builder()
-//                .wind(wsResponse.getCurrent().getWind_speed())
-//                .cityName(wsResponse.getLocation().getName())
-//                .temperature(wsResponse.getCurrent().getTemperature())
-//                .pressure(wsResponse.getCurrent().getPressure())
-//                .date(wsResponse.getLocation().getLocaltime())
-//                .build();
-//
-//        WeatherApiParser cityOwResponseWeatherApiParser = WeatherApiParser.builder()
-//                .wind(owResponse.getWind().getSpeed())
-//                .cityName(owResponse.getName())
-//                .temperature(owResponse.getMain().getTemp())
-//                .pressure(owResponse.getMain().getPressure())
-//                .date(owResponse.getDt())
-//                .build();
+        Wind wind=new Wind();
+        Main main=new Main();
+        wind.setSpeed((windSpeed+windSpeed2)/2.0f);
+        main.setTemp((temp+temp2)/2.0f);
+        main.setPressure((pressure+pressure2)/2.0f);
 
+        return new CityOwResponse(name,wind,main,owResponse.getDt());
     }
 }
 
