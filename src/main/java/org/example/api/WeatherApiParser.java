@@ -19,7 +19,7 @@ public class WeatherApiParser {
         main.setPressure(wsResponse.getCurrent().getPressure());
         main.setTemp(wsResponse.getCurrent().getTemperature());
         wind.setSpeed(wsResponse.getCurrent().getWind_speed());
-        return new CityOwResponse(wsResponse.getLocation().getName(), wind, main, wsResponse.getLocation().getLocaltime());
+        return new CityOwResponse(wsResponse.getLocation().getName(), wind, main, wsResponse.getLocation().getLocaltime_epoch());
     }
 
 }
