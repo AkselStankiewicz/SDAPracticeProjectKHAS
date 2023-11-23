@@ -1,7 +1,10 @@
 package org.example.services;
 
+import org.example.api.CityWeatherDataResponse;
+import org.example.api.WeatherApiParser;
 import org.example.api.obj.City;
 import org.example.api.open_weather.CityOwResponse;
+import org.example.api.weatherStack.CityWsResponse;
 import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
 import org.example.db.WeatherDataEntity;
@@ -17,6 +20,8 @@ public class GetAndAddToDbService {
         String city = scan.nextLine();
         String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
         final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
+        final CityWsResponse weatherFromWeatherStack= new WeatherService().getWeatherFromWeatherStack(parsed);
+        final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
         System.out.println("City weather: " + weatherFromOpenWeather);
         addOrUpdateCity(weatherFromOpenWeather.getName(), weatherFromOpenWeather, cityService, cityWeatherDb);
     }
