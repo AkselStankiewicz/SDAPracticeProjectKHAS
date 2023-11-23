@@ -10,6 +10,7 @@ import org.example.db.WeatherDataEntity;
 import org.example.services.cityServices.CityService;
 import org.example.services.idServices.CityIdService;
 import org.example.services.idServices.WeatherIdService;
+import org.example.services.mappers.CityDataEntityMapper;
 import org.example.services.weatherServices.WeatherService;
 
 import java.time.LocalDateTime;
@@ -37,16 +38,7 @@ public class GetAndAddToDbService {
         } else {
             city = new City(CityIdService.getNewId(), response.getName());
         }
-        CityDataEntity cityToAdd = new CityDataEntity(city.getId(),
-                city.getName(),
-                new WeatherDataEntity(
-                        WeatherIdService.getNewId(),
-                        city.getId(),
-                        LocalDateTime.now(),
-                        response.getMain().getTemp(),
-                        response.getWind().getSpeed(),
-                        response.getMain().getPressure()
-                ));
+        CityDataEntity cityToAdd = CityDataEntityMapper.map(city,response);
 
         System.out.println("City to add weather ID: " + cityToAdd.getWeatherDataEntity().getId());
 
