@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
- class Current {
+public class Current {
     Float temperature;
     Float pressure;
     //String wind_dir;
-    String wind_speed;
+    Float wind_speed;
 }

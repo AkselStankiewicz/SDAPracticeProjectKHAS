@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class CityWeatherDataResponse {
 	private String cityName;
 	private LocalDateTime date;
-	
 	private Float temperature;
 	private Float windSpeed;
 	private Float pressure;

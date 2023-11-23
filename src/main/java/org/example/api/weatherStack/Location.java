@@ -10,8 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 public class Location {
     String name;
-    String country;
-    String localtime;
+    LocalDateTime localtime;
 
 
 
