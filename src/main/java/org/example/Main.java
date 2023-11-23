@@ -13,7 +13,7 @@ public class Main {
         CityService cityService = new CityService();
         CityWeatherDb cityWeatherDb = new CityWeatherDb();
         String userInput = "";
-        while (!userInput.equals("X")) {
+        while (true) {
 
             Scanner scan = new Scanner(System.in);
             userInput = scan.nextLine();
