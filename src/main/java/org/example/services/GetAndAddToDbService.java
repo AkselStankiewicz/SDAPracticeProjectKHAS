@@ -22,8 +22,10 @@ public class GetAndAddToDbService {
         final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
         final CityWsResponse weatherFromWeatherStack= new WeatherService().getWeatherFromWeatherStack(parsed);
         final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
+        final CityOwResponse averageWeatherFromTwoApis = new MedianFromInput().calculateAverageWeather(weatherFromOpenWeather, parsedWeather);
         System.out.println("City weather: " + weatherFromOpenWeather);
-        addOrUpdateCity(weatherFromOpenWeather.getName(), weatherFromOpenWeather, cityService, cityWeatherDb);
+        System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
+        addOrUpdateCity(averageWeatherFromTwoApis.getName(), averageWeatherFromTwoApis, cityService, cityWeatherDb);
     }
     public CityDataEntity addOrUpdateCity(String name, CityOwResponse response, CityService cityService, CityWeatherDb db) {
         City city;
