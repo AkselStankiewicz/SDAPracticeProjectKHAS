@@ -1,11 +1,8 @@
 package org.example;
 
-import org.example.api.obj.City;
-import org.example.api.open_weather.CityOwResponse;
-import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
-import org.example.db.WeatherDataEntity;
 import org.example.services.*;
+import org.example.services.cityServices.CityService;
 
 import java.util.Scanner;
 
@@ -14,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        var isRunning = true;
         showWelcomeMenu();
         CityService cityService = new CityService();
         CityWeatherDb cityWeatherDb = new CityWeatherDb();
@@ -25,7 +21,9 @@ public class Main {
             userInput = scan.nextLine();
 
             switch (userInput) {
-                case "X" -> isRunning = false;
+                case "X" -> {
+                    return;
+                }
                 case "Y" -> new GetAndAddToDbService().handle(cityService, cityWeatherDb);
                 case "A" -> cityService.showAllCities();
                 case "AD" -> {

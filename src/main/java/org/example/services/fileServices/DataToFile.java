@@ -1,4 +1,4 @@
-package org.example.services;
+package org.example.services.fileServices;
 
 import org.example.api.open_weather.CityOwResponse;
 
@@ -23,7 +23,6 @@ public class DataToFile {
         }
         else{
         try {
-            System.out.println("dupa");
             Files.createFile(path);
             Files.write(path, "City name Temperature , Pressure  Wind  Date \n".getBytes());
         } catch (IOException e) {

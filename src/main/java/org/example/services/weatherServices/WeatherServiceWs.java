@@ -1,4 +1,4 @@
-package org.example.services;
+package org.example.services.weatherServices;
 
 import org.example.api.HttpClientService;
 import org.example.api.weatherStack.CityWsResponse;

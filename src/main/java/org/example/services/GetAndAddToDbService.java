@@ -1,6 +1,5 @@
 package org.example.services;
 
-import org.example.api.CityWeatherDataResponse;
 import org.example.api.WeatherApiParser;
 import org.example.api.obj.City;
 import org.example.api.open_weather.CityOwResponse;
@@ -8,6 +7,10 @@ import org.example.api.weatherStack.CityWsResponse;
 import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
 import org.example.db.WeatherDataEntity;
+import org.example.services.cityServices.CityService;
+import org.example.services.idServices.CityIdService;
+import org.example.services.idServices.WeatherIdService;
+import org.example.services.weatherServices.WeatherService;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;

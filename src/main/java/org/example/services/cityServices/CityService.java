@@ -1,4 +1,4 @@
-package org.example.services;
+package org.example.services.cityServices;
 
 import org.example.api.obj.City;
 
