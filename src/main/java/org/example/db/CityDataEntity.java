@@ -7,9 +7,15 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class CityDataEntity {
 	private Long id;
 	private String name;
 	private WeatherDataEntity weatherDataEntity;
+
+	@Override
+	public String toString() {
+		return "\nCity ID: " + id +
+				"\nCity Name: " + name +
+				"\nPogoda: " + weatherDataEntity;
+	}
 }

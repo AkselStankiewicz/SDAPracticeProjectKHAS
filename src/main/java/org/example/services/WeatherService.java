@@ -23,19 +23,16 @@ public class WeatherService {
 		return response;
 	}
 
-	public CityWsResponse getWeatherFromWeatherStack(String sc) {
-		String city = sc.trim();
-		Pattern pattern = Pattern.compile(" ");
-		Matcher matcher = pattern.matcher(city);
-		city = matcher.replaceAll("%20");
-		String weatherStackURL = "http://api.weatherstack.com/current?access_key=1775f0126e369d937a7d071a120a46f5&query=" + city + "&units=m";
+    public CityWsResponse getWeatherFromWeatherStack(String sc) {
+        String city = sc.trim();
+        Pattern pattern = Pattern.compile(" ");
+        Matcher matcher = pattern.matcher(city);
+        city = matcher.replaceAll("%20");
+        String weatherStackURL = "http://api.weatherstack.com/current?access_key=1775f0126e369d937a7d071a120a46f5&query=" + city + "&units=m";
 
-		var httpClientService = new HttpClientService<CityWsResponse>();
-		matcher.reset();
-		return httpClientService.getWeather(weatherStackURL, CityWsResponse.class);
+        var httpClientService = new HttpClientService<CityWsResponse>();
+        matcher.reset();
+        return httpClientService.getWeather(weatherStackURL, CityWsResponse.class);
 
-	}
-
-
-	
+    }
 }

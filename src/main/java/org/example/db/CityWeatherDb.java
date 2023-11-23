@@ -65,7 +65,8 @@ public class CityWeatherDb {
             System.out.println("Brak klucza w bazie.");
             return new CityDataEntity();
         } else {
-            save(cityName, entity);
+            dataBase.put(cityName, entity);
+            System.out.println("Updated the record.");
             return entity;
         }
     }
