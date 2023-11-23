@@ -6,6 +6,7 @@ import org.example.api.weatherStack.CityWsResponse;
 
 public class MedianFromInput {
 
+
     void display(CityWsResponse wsResponse, CityOwResponse owResponse) {
 
 //        WeatherApiParser cityWsResponseWeatherApiParser = WeatherApiParser.builder()
