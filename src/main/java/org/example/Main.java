@@ -26,17 +26,7 @@ public class Main {
                 }
                 case "Y" -> new GetAndAddToDbService().handle(cityService, cityWeatherDb);
                 case "A" -> cityService.showAllCities();
-                case "AD" -> {
-                    Map<String, CityDataEntity> allCities = cityWeatherDb.getAll();
-                    if (allCities.isEmpty()) {
-                        System.out.println("No cities in base.");
-                        break;
-                    }
-                    allCities.forEach((k, v) -> {
-                        System.out.println("Key:\n" + k);
-                        System.out.println("Value: " + v + "\n");
-                    });
-                }
+                case "AD" -> cityService.showAllCitiesWithDetails(cityWeatherDb);
                 default -> System.out.println("ERROR!!! INVALID INPUT");
             }
         }

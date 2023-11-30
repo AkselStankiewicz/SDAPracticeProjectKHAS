@@ -1,9 +1,12 @@
 package org.example.services.cityServices;
 
 import org.example.api.obj.City;
+import org.example.db.CityDataEntity;
+import org.example.db.CityWeatherDb;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CityService {
@@ -48,5 +51,16 @@ public class CityService {
         for (City c : cities) {
             System.out.println(c);
         }
+    }
+    public void showAllCitiesWithDetails(CityWeatherDb cityWeatherDb) {
+        Map<String, CityDataEntity> allCities = cityWeatherDb.getAll();
+        if (allCities.isEmpty()) {
+            System.out.println("No cities in base.");
+            return;
+        }
+        allCities.forEach((k, v) -> {
+            System.out.println("Key:\n" + k);
+            System.out.println("Value: " + v + "\n");
+        });
     }
 }
