@@ -20,10 +20,12 @@ public class GetAndAddToDbService {
         System.out.println("Type city name: ");
         String city = scan.nextLine();
         String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
+
         final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
         final CityWsResponse weatherFromWeatherStack= new WeatherService().getWeatherFromWeatherStack(parsed);
-        System.out.println("City weather: " + weatherFromOpenWeather);
-        System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
+        //System.out.println("City weather: " + weatherFromOpenWeather);
+        //System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
+
         if (weatherFromWeatherStack.getCurrent() != null && weatherFromOpenWeather.getName() != null) {
             final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
             final CityOwResponse averageWeatherFromTwoApis = new MedianFromInput().calculateAverageWeather(weatherFromOpenWeather, parsedWeather);
