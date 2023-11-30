@@ -38,7 +38,7 @@ public class CityService {
 
     public boolean add(City city) {
         if (city == null) {
-            System.out.println("City is null null.");
+            System.out.println("City is null.");
             return false;
         }
         return cities.add(city);
