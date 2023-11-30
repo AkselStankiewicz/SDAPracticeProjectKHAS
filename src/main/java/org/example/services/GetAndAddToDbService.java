@@ -21,8 +21,9 @@ public class GetAndAddToDbService {
         String city = scan.nextLine();
         String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
 
-        final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
-        final CityWsResponse weatherFromWeatherStack= new WeatherService().getWeatherFromWeatherStack(parsed);
+        WeatherService weatherService = new WeatherService();
+        final CityOwResponse weatherFromOpenWeather = weatherService.getWeatherFromOpenWeather(parsed);
+        final CityWsResponse weatherFromWeatherStack= weatherService.getWeatherFromWeatherStack(parsed);
         //System.out.println("City weather: " + weatherFromOpenWeather);
         //System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
 
