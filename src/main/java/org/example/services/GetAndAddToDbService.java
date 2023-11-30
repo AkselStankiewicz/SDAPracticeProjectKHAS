@@ -27,7 +27,7 @@ public class GetAndAddToDbService {
         //System.out.println("City weather: " + weatherFromOpenWeather);
         //System.out.println("\n\nCity weather: " + weatherFromWeatherStack + "\n\n");
 
-        if (weatherFromWeatherStack.getCurrent() != null && weatherFromOpenWeather.getName() != null) {
+        if (areResponsesNull(weatherFromWeatherStack, weatherFromOpenWeather)) {
             final CityOwResponse parsedWeather = new WeatherApiParser().parseToOwResponse(weatherFromWeatherStack);
             final CityOwResponse averageWeatherFromTwoApis = new MedianFromInput().calculateAverageWeather(weatherFromOpenWeather, parsedWeather);
             addOrUpdateCity(averageWeatherFromTwoApis.getName(), averageWeatherFromTwoApis, cityService, cityWeatherDb);
@@ -35,6 +35,11 @@ public class GetAndAddToDbService {
             System.out.println("One or both of requested objects are null");
         }
     }
+
+    private boolean areResponsesNull(CityWsResponse weatherFromWeatherStack, CityOwResponse weatherFromOpenWeather) {
+        return weatherFromWeatherStack.getCurrent() != null && weatherFromOpenWeather.getName() != null;
+    }
+
     public CityDataEntity addOrUpdateCity(String name, CityOwResponse response, CityService cityService, CityWeatherDb db) {
         City city;
         if (cityService.isInBase(name)) {
