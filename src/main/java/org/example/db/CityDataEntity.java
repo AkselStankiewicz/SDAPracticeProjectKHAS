@@ -16,6 +16,6 @@ public class CityDataEntity {
 	public String toString() {
 		return "\nCity ID: " + id +
 				"\nCity Name: " + name +
-				"\nPogoda: " + weatherDataEntity;
+				"\nWeather:\n" + weatherDataEntity;
 	}
 }
