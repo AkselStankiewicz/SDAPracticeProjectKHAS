@@ -19,11 +19,7 @@ public class CityService {
                 .map(City::getName)
                 .filter(n -> n.equals(name))
                 .toList();
-        if (list.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+       return !list.isEmpty();
     }
 
     public City getCity(String name) {
