@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.db.CityDataEntity;
 import org.example.db.CityWeatherDb;
 import org.example.services.*;
 import org.example.services.cityServices.CityService;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -25,8 +27,13 @@ public class Main {
                 case "Y" -> new GetAndAddToDbService().handle(cityService, cityWeatherDb);
                 case "A" -> cityService.showAllCities();
                 case "AD" -> {
-                    cityWeatherDb.getAll().forEach((k, v) -> {
-                        System.out.println("Key: " + k);
+                    Map<String, CityDataEntity> allCities = cityWeatherDb.getAll();
+                    if (allCities.isEmpty()) {
+                        System.out.println("No cities in base.");
+                        break;
+                    }
+                    allCities.forEach((k, v) -> {
+                        System.out.println("Key:\n" + k);
                         System.out.println("Value: " + v + "\n");
                     });
                 }

@@ -17,7 +17,7 @@ public class GetAndAddToDbService {
 
     public void handle(CityService cityService, CityWeatherDb cityWeatherDb) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Podaj nazwę miasta: ");
+        System.out.println("Type city name: ");
         String city = scan.nextLine();
         String parsed = String.valueOf(city.charAt(0)).toUpperCase() + city.substring(1);
         final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(parsed);
